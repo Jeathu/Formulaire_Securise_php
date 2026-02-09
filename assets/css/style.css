@@ -1,0 +1,106 @@
+/* CSS personnalisé */
+
+/* Animation CSS pure pour les transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Style pour les alertes avec animation CSS */
+.alert {
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Auto-hide des alertes après 5 secondes (CSS pur) */
+.alert {
+    animation: slideIn 0.5s ease, fadeOut 1s ease 4s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Cartes avec hover */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Boutons avec effet hover */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Gradient background animé (CSS pur) */
+body {
+    background: linear-gradient(135deg, #EBF4FF 0%, #C3DAFE 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Footer sticky */
+footer {
+    margin-top: auto;
+}
+
+/* Inputs focus */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin: 1rem;
+    }
+    .stats {
+        flex-direction: column;
+    }
+}
+
+/* Stats hover effect */
+.stat:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
