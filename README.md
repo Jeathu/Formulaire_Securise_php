@@ -141,6 +141,11 @@ Une fois l'installation terminée :
 
 ![Inscription](./image/inscription.png)
 
+<br>
+<br>
+
+![Dashboard](./image/Dash.png)
+
 ### Comptes de test
 
 Vous pouvez créer un compte via le formulaire d'inscription ("S'inscrire") et vérifier la base de données après création.
