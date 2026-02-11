@@ -165,44 +165,6 @@
                 </ul>
             </div>
         </div>
-
-        <!-- Structure MVC -->
-        <div class="card bg-base-100 shadow-xl md:col-span-2">
-            <div class="card-body">
-                <h2 class="card-title text-2xl mb-4">
-                    <span class="text-3xl">⚙️</span>
-                    Architecture MVC
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="alert alert-info">
-                        <div class="text-sm">
-                            <strong>MODEL</strong>
-                            <p class="mt-1">User.php - Logique métier et accès aux données</p>
-                        </div>
-                    </div>
-                    <div class="alert alert-success">
-                        <div class="text-sm">
-                            <strong>VIEW</strong>
-                            <p class="mt-1">login.php, dashboard/index.php - Présentation</p>
-                        </div>
-                    </div>
-                    <div class="alert alert-warning">
-                        <div class="text-sm">
-                            <strong>CONTROLLER</strong>
-                            <p class="mt-1">AuthController, DashboardController - Logique</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <h3 class="font-bold mb-2">CORE Framework:</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-neutral">App.php - Router</span>
-                        <span class="badge badge-neutral">Controller.php - Base</span>
-                        <span class="badge badge-neutral">Database.php - PDO Singleton</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Bouton de déconnexion -->

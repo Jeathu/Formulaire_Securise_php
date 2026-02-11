@@ -132,6 +132,7 @@ Une fois l'installation terminée :
 1. Ouvrez votre navigateur.
 2. Accédez à l'URL du projet :
    [http://localhost/formulaire_php_mvc/](http://localhost/formulaire_php_mvc/)
+3. Vous devriez voir la page d'accueil avec les options de connexion et d'inscription. Vous douvez Cliquer sur "`Ajoute compte`" pour créer un compte, puis `vous connecter avec les identifiants créés`.
 
 <br>
 
