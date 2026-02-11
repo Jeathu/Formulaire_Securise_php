@@ -132,7 +132,8 @@ Une fois l'installation terminée :
 1. Ouvrez votre navigateur.
 2. Accédez à l'URL du projet :
    [http://localhost/formulaire_php_mvc/](http://localhost/formulaire_php_mvc/)
-3. Vous devriez voir la page d'accueil avec les options de connexion et d'inscription. Vous douvez Cliquer sur "`Ajoute compte`" pour créer un compte, puis `vous connecter avec les identifiants créés`.
+3. Vous devriez voir la page d'accueil avec les options de connexion et d'inscription.    
+Vous douvez Cliquer sur "`Ajoute compte`" pour créer un compte, puis `vous connecter avec les identifiants créés`.
 
 <br>
 
@@ -146,6 +147,42 @@ Une fois l'installation terminée :
 <br>
 
 ![Dashboard](./image/Dash.png)
+
+<br>
+<br>
+
+#### __*Gestion des erreurs*__
+
+* `Inscription` : erreur si l'identifiant a moins de 3 caractères et le mot de passe moins de 8 caractères, avec les conditions à respecter.
+
+* `Connexion` : erreur si les identifiants sont incorrects ou si les champs sont vides.
+
+<br>
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="./image/jk_images.png" width="260" alt="Saisie utilisateur incorrecte"/>
+    </td>
+    <td align="center" width="50%">
+      <img src="./image/mdp.png" width="260" alt="Message d'erreur"/> 
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center" width="50%">
+      <img src="./image/error.png" width="260" alt="Message d'erreur"/> 
+    </td>
+    <td align="center" width="50%">
+      <img src="./image/connex.png" width="260" alt="Message d'erreur"/> 
+    </td>
+  </tr>
+</table>
+
+
+
+<br>
+<hr>
 
 ### Comptes de test
 
