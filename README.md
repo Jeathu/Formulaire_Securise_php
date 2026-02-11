@@ -28,36 +28,52 @@ Ce projet est une application web développée en **PHP natif** suivant strictem
 <br>
 <br>
 
+## **_Fonctionnalités_**
 
-
-
-## __*Fonctionnalités et Sécurité*__
-
-| Fonctionnalité | Détails |
-|---------------|---------|
-| **Structure MVC** | Séparation claire : `Models` (Données), `Views` (Interface), `Controllers` (Logique). |
-| **Routeur Personnalisé** | Gestion dynamique des URL via `index.php` et `.htaccess`. |
-| **Singleton DB** | Connexion unique et optimisée à la base de données. |
+| Fonctionnalité           | Détails                                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------- |
+| **Structure MVC**        | Séparation claire : `Models` (Données), `Views` (Interface), `Controllers` (Logique). |
+| **Routeur Personnalisé** | Gestion dynamique des URL via `index.php` et `.htaccess`.                             |
+| **Singleton DB**         | Connexion unique et optimisée à la base de données.                                   |
 
 <br>
 
-## __*Sécurité*__
-| Mesure | Description |
-|--------|-------------|
-| **Protection SQLi** | Utilisation systématique de requêtes préparées via PDO. |
-| **Sécurité XSS** | Échappement des sorties (Output Escaping). |
-| **Hachage MDP** | Utilisation de `password_hash()` (Argon2) pour les mots de passe. |
-| **Protection Session** | Configuration sécurisée des cookies de session. |
+## **_Sécurité_**
+
+| Mesure                   | Description                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| **Protection SQLi**      | Utilisation systématique de requêtes préparées via PDO.           |
+| **Sécurité XSS**         | Échappement des sorties (Output Escaping).                        |
+| **Hachage MDP**          | Utilisation de `password_hash()` (Argon2) pour les mots de passe. |
+| **Protection Session**   | Configuration sécurisée des cookies de session.                   |
+| **Protection CSRF**      | Implémentation de jetons anti-CSRF (tokens) dans les formulaires. |
+| **Utilisation du Regex** | Validation et filtrage des données utilisateur via regex          |
+
+<br>
+
+## **_Détail de sécurité appliqué_**
+
+- **SQL Injection** : Toutes les interactions avec la base de données utilisent des requêtes préparées via PDO, empêchant l'injection de code malveillant. Les requetest préparées séparent les données des commandes SQL, rendant impossible l'exécution de code non autorisé. Qui sont situées dans le fichier `app/models/User.php`.
+
+- **Cross-Site Scripting (XSS)** : Toutes les données affichées dans les vues sont échappées à l'aide de `htmlspecialchars()`, empêchant l'exécution de scripts malveillants injectés par les utilisateurs. Cette mesure est appliquée dans tous les fichiers de la vue (`app/views/`).
+
+- **Hachage des Mots de Passe** : Les mots de passe sont hachés à l'aide de `password_hash()` avec l'algorithme Argon2, assurant une protection robuste contre les attaques par force brute. Cette fonctionnalité est implémentée dans le contrôleur d'authentification (`app/controllers/AuthController.php`).
+
+- **Protection des Sessions** : Les cookies de session sont configurés avec les flags `HttpOnly` et `Secure` pour empêcher l'accès via JavaScript et assurer la transmission sécurisée. Cette configuration est définie dans le fichier `config/config.php`.
+
+- **Protection CSRF** : Un système de jetons anti-CSRF est implémenté pour tous les formulaires, garantissant que les requêtes proviennent de sources légitimes. Les jetons sont générés et vérifiés dans le contrôleur d'authentification (`app/controllers/AuthController.php`).
+
+- **Validation des Données** : Les données utilisateur sont validées et filtrées à l'aide de expressions régulières (`regex`) pour assurer qu'elles respectent les formats attendus, réduisant ainsi les risques d'injection et de données malformées. Cette validation est également gérée dans le contrôleur d'authentification (`app/controllers/AuthController.php`).
 
 <br>
 <br>
 
-
-## __*Guide d'Installation (XAMPP)*__
+## **_Guide d'Installation_**
 
 Suivez ces étapes pour configurer l'environnement de correction.
 
 ### 1. Prérequis
+
 - **XAMPP** installé : https://www.apachefriends.org/fr/index.html
 
 - Modules **Apache** et **MySQL** démarrés (status : vert).
@@ -69,6 +85,7 @@ Suivez ces étapes pour configurer l'environnement de correction.
 <br>
 
 ### 2. Installation des fichiers
+
 1. Clonez ce dépôt ou copiez le dossier dans le répertoire `htdocs` de XAMPP.
 
 ![Htdocs](./image/hdocs.png)
@@ -79,6 +96,7 @@ Suivez ces étapes pour configurer l'environnement de correction.
 <br>
 
 ### 3. Configuration de la Base de Données
+
 1. Accédez à **PHPMyAdmin** : [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
 
 <br>
@@ -95,14 +113,15 @@ Suivez ces étapes pour configurer l'environnement de correction.
 <br>
 
 ### 4. Vérification de la Configuration
+
 Le fichier `config/config.php` est pré-configuré pour XAMPP par défaut :
 
-| Paramètre | Valeur |
-|-----------|--------|
-| **DB_HOST** | `localhost` |
+| Paramètre   | Valeur             |
+| ----------- | ------------------ |
+| **DB_HOST** | `localhost`        |
 | **DB_NAME** | `secure_login_mvc` |
-| **DB_USER** | `root` |
-| **DB_PASS** | `''` (vide) |
+| **DB_USER** | `root`             |
+| **DB_PASS** | `''` (vide)        |
 
 <br>
 
@@ -116,20 +135,20 @@ Une fois l'installation terminée :
 
 <br>
 
-   ![Accueil](./image/formulaire.png)
+![Accueil](./image/formulaire.png)
 
    <br>
 
-   ![Inscription](./image/inscription.png)
+![Inscription](./image/inscription.png)
 
 ### Comptes de test
+
 Vous pouvez créer un compte via le formulaire d'inscription ("S'inscrire") et vérifier la base de données après création.
 
-
 <br>
 <br>
 
-## 📂 Structure des Dossiers
+## Structure des Dossiers
 
 Une vue d'ensemble pour naviguer dans le code lors de la correction :
 
