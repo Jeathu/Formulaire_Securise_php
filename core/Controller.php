@@ -33,8 +33,14 @@ class Controller {
     }
 
     protected function requireAuth() {
-        if (!$this->isLoggedIn()) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
+        if (!$this->isLoggedIn() || !$this->verifyFingerprint()) {
+            // Si l'empreinte ne correspond pas, on déconnecte de force
+            if ($this->isLoggedIn() && !$this->verifyFingerprint()) {
+                session_unset();
+                session_destroy();
+                session_start();
+            }
+            $_SESSION['error'] = 'Session invalide ou expirée. Veuillez vous reconnecter.';
             $this->redirect('auth/login');
         }
     }
@@ -55,5 +61,20 @@ class Controller {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
         return $_SESSION['csrf_token'];
+    }
+
+    // Génération d'une empreinte de session (Fingerprint)
+    protected function generateFingerprint() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+        return hash('sha256', $userAgent . $ip . 'SALT_SECRET_SECURE');
+    }
+
+    // Vérification de l'empreinte de session
+    protected function verifyFingerprint() {
+        if (!isset($_SESSION['fingerprint'])) {
+            return false;
+        }
+        return hash_equals($_SESSION['fingerprint'], $this->generateFingerprint());
     }
 }

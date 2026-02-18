@@ -48,6 +48,10 @@ Ce projet est une application web développée en **PHP natif** suivant strictem
 | **Protection Session**   | Configuration sécurisée des cookies de session.                   |
 | **Protection CSRF**      | Implémentation de jetons anti-CSRF (tokens) dans les formulaires. |
 | **Utilisation du Regex** | Validation et filtrage des données utilisateur via regex          |
+| **Contrôle d'Accès**     | Images sécurisées, Dossiers verrouillés, Déconnexion propre       |
+| **Cryptographie et Session** | Cookies durcis, Anti-Hijacking                                    |
+| **Intégrité**            | Validation CDN                                                    |
+| **Protection Anti-Bot**  | Honeypot                                                          |
 
 <br>
 
@@ -64,6 +68,22 @@ Ce projet est une application web développée en **PHP natif** suivant strictem
 - **Protection CSRF** : Un système de jetons anti-CSRF est implémenté pour tous les formulaires, garantissant que les requêtes proviennent de sources légitimes. Les jetons sont générés et vérifiés dans le contrôleur d'authentification (`app/controllers/AuthController.php`).
 
 - **Validation des Données** : Les données utilisateur sont validées et filtrées à l'aide de expressions régulières (`regex`) pour assurer qu'elles respectent les formats attendus, réduisant ainsi les risques d'injection et de données malformées. Cette validation est également gérée dans le contrôleur d'authentification (`app/controllers/AuthController.php`).
+
+- **Contrôle d'Accès (A1)** : 
+* Images sécurisées : Les images sont désormais protégées contre l'accès direct et servies via un script PHP qui vérifie l'identité.
+* Dossiers verrouillés : L'accès aux dossiers sensibles (`app, core, config`) est bloqué via .htaccess
+* Déconnexion propre : Suppression totale des cookies côté client lors de la déconnexion.
+
+- **Cryptographie et Session (A2)** :
+* Cookies durcis : Activation des protections HttpOnly, SameSite=Strict et du mode strict pour empêcher les vols de session.
+* Anti-Hijacking : Mise en place d'une "empreinte" (Fingerprint) qui vérifie que l'IP et le navigateur ne changent pas durant la session.
+
+- **Intégrité (A8)** :
+* Validation CDN : Sécurisation du chargement des bibliothèques externes (DaisyUI) pour garantir que le code n'est pas corrompu.
+
+- **Protection Anti-Bot (Honeypot)** :
+* Ajout de champs "pièges" invisibles dans les formulaires pour détecter et bloquer automatiquement les robots malveillants.
+
 
 <br>
 <br>

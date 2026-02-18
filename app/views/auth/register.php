@@ -6,9 +6,9 @@
 
             <!-- Logo -->
             <div class="flex justify-center mb-6">
-                <div class="avatar placeholder">
-                    <div class="bg-accent text-accent-content rounded-full w-24">
-                        <span class="text-4xl">👤</span>
+                <div class="avatar">
+                    <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden bg-white">
+                        <img src="<?php echo BASE_URL; ?>image.php?file=logo/Logo-image.jpg" alt="Logo" class="object-cover" />
                     </div>
                 </div>
             </div>
@@ -68,6 +68,11 @@
                     <label class="label">
                         <span class="label-text-alt text-gray-500">1 majuscule, 1 minuscule, 1 chiffre, 1 spécial (@$!%*?&)</span>
                     </label>
+                </div>
+
+                <!-- Anti-bot Honeypot -->
+                <div style="display:none !important;" aria-hidden="true">
+                    <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                 </div>
 
                 <!-- Boutons -->

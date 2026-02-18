@@ -12,6 +12,12 @@
     RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 </IfModule>
 
+# Bloquer l'accès aux dossiers sensibles (A1 - Access Control)
+RewriteRule ^(app|core|config|logs|vendor)($|/) - [F,L]
+
+# Bloquer l'accès aux fichiers cachés
+RewriteRule "(^|/)\." - [F]
+
 Options -Indexes
 
 <FilesMatch "^(\.htaccess|config\.php)">

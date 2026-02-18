@@ -11,6 +11,16 @@ class AuthController extends Controller {
         $this->userModel = $this->model('User');
     }
 
+    // Vérification du Honeypot (Anti-Bot)
+    private function checkHoneypot() {
+        if (!empty($_POST['website_url'])) {
+            // Un robot a rempli le champ caché
+            $_SESSION['error'] = 'Activités suspectes détectées.';
+            return false;
+        }
+        return true;
+    }
+
     // Page de connexion par défaut
     public function index() {
         $this->login();
@@ -41,6 +51,11 @@ class AuthController extends Controller {
             $this->redirect('auth/login');
         }
 
+        // Vérification du Honeypot
+        if (!$this->checkHoneypot()) {
+            $this->redirect('auth/login');
+        }
+
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
         $result = $this->userModel->authenticate($username, $password);
@@ -54,6 +69,7 @@ class AuthController extends Controller {
             $_SESSION['username'] = $result['user']['username'];
             $_SESSION['logged_in'] = true;
             $_SESSION['last_activity'] = time();
+            $_SESSION['fingerprint'] = $this->generateFingerprint(); // Fingerprinting
             $_SESSION['success'] = $result['message'];
             $this->redirect('dashboard');
         } else {
@@ -83,6 +99,11 @@ class AuthController extends Controller {
             $this->redirect('auth/login');
         }
 
+        // Vérification du Honeypot
+        if (!$this->checkHoneypot()) {
+            $this->redirect('auth/showRegister');
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
@@ -100,11 +121,20 @@ class AuthController extends Controller {
 
     // Déconnexion
     public function logout() {
-        // Détruction de la session
-        session_unset();
+        // Destruction de la session
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
         session_destroy();
 
-        // Redémarrer une nouvelle session
+        // Redémarrer une session pour le message flash
         session_start();
         $_SESSION['success'] = 'Vous avez été déconnecté avec succès';
         $this->redirect('auth/login');

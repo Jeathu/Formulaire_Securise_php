@@ -1,0 +1,3 @@
+# Bloquer tout accès direct aux images
+Order Deny,Allow
+Deny from all

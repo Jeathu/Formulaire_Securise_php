@@ -25,6 +25,7 @@ ini_set('session.cookie_secure', 0);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_samesite', 'Strict');
 ini_set('session.use_strict_mode', 1);
+ini_set('session.gc_maxlifetime', SESSION_TIMEOUT);
 
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: DENY");

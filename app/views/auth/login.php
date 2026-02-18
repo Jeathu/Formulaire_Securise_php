@@ -5,9 +5,9 @@
         <div class="card-body">
             <!-- Logo -->
             <div class="flex justify-center mb-6">
-                <div class="avatar placeholder">
-                    <div class="bg-primary text-primary-content rounded-full w-24">
-                        <span class="text-4xl">🔒</span>
+                <div class="avatar">
+                    <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden bg-white">
+                        <img src="<?php echo BASE_URL; ?>image.php?file=logo/Logo-image.jpg" alt="Logo" class="object-cover" />
                     </div>
                 </div>
             </div>
@@ -64,9 +64,13 @@
                         name="password" 
                         placeholder="Votre mot de passe" 
                         class="input input-bordered w-full" 
-                        required
                         autocomplete="current-password"
                     />
+                </div>
+
+                <!-- Anti-bot Honeypot -->
+                <div style="display:none !important;" aria-hidden="true">
+                    <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                 </div>
 
                 <!-- Boutons -->
